@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="service1" class="service.ProductServiceGeneral">
+	
+		<property name="dao" ref="dao" />
+	</bean>
+
+	<bean id="service2" class="service.ProductService12">
+		<property name="dao" ref="dao2" />
+	</bean>
+
+	<bean id="service3" class="service.ProductService05">
+		<property name="dao" ref="dao3" />
+	</bean>
+
+	<bean id="dao" class="service.ProductDAO">
+		<property name="vo" ref="vo"></property>
+	</bean>
+	<!-- 
+		<bean id="dao2" class="service.ProductDAO">
+		<property name="vo" ref="vo2"></property>
+	</bean>
+	
+		<bean id="dao3" class="service.ProductDAO">
+		<property name="vo" ref="vo3"></property>
+	</bean> -->
+
+	<bean id="vo" class="service.ProductVO" >
+		<property name="code" value="1000" />
+		<property name="name" value="spring" />
+		<property name="price" value="500000" />
+	</bean>
+
+	<!-- <bean id="vo2" class="service.ProductVO" >
+		<property name="code" value="1000" />
+		<property name="name" value="spring" />
+		<property name="price" value="500000" />
+	</bean>
+		<bean id="vo3" class="service.ProductVO" >
+		<property name="code" value="1000" />
+		<property name="name" value="spring" />
+		<property name="price" value="500000" />
+	</bean> -->
+
+
+</beans>

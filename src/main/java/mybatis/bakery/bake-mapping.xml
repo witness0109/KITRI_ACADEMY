@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bake">
+
+	<select id="allbake" resultType="bake">
+		select * from bakery
+	</select>
+
+
+	<insert id="insertbake" parameterType="bake">
+		insert into bakery (bakeryid, bakeryname, price, balance, bakeryimage) values 
+		(bakery_seq.nextval, #{bakeryname}, #{price}, #{balance}, #{img})
+
+	</insert>
+
+</mapper>
+
+
+
+
+
+
+
+

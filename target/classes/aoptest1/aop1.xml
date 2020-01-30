@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<bean id="member" class="aoptest1.Member"/>
+	<bean id="board" class="aoptest1.Board"/>
+	
+	<bean id="common" class="aoptest1.Common"/> <!-- 공통 관심  메소드단위 + 핵심관심 메소드-->
+	
+	<aop:config>
+		<aop:pointcut expression="execution( * aoptest1.*.*(..))" id="freedom"/> 
+		<aop:aspect id="breaktime" ref="common">
+		<!-- <aop:after method="print" pointcut-ref="freedom"/> -->
+	<!-- <aop:after-returning method="printresult" pointcut-ref="freedom" returning="val"/> -->
+	<aop:around method="printaround" pointcut-ref="freedom"/>
+		</aop:aspect>
+	</aop:config>
+	
+</beans>

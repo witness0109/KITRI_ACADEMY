@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+<!-- 0.  -->
+<typeAliases>
+<typeAlias type="mybatis.spring.EmpVO" alias="emp"/>
+</typeAliases>
+
+
+	<!-- 1. 드라이버 이름, 연결한 db ip, port, 계정, 암호 설정  / spring에서 함-->
+	
+	<!-- 2. 테이블 관련 sql 정의 매핑파일 설정 / spring에서 함 -->
+
+</configuration>

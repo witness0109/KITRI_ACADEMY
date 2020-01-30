@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
+
+	<!-- DispatcherServlet -> Controller -> Model, view view : *.png . *.mp3, 
+		jquery.js 필요(정적파일) /resources/a.png -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+
+	<!-- mav.setViewName("hello"); prefix+ mavsetViewName + suffix = /WEB-INF/views/ 
+		.jsp" -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	 <context:component-scan
+		base-package="kitri.edu.mvc" /> 
+		<!-- <context:component-scan base-package="mybatis.spring"/> -->
+	<!-- <context:component-scan base-package="board" /> -->
+	<!-- <context:component-scan base-package="member" /> -->
+
+	<!-- 1. mvc패키지의 컨트롤러 사용시 사용자 컨트롤러 객체 -->
+	<!-- <beans:bean class="mvc.HelloController" id="hc" /> -->
+	<!-- <beans:bean class="mvc.BoardController" id="bc" /> <beans:bean class="mvc.MemberController" 
+		id="mc" /> -->
+	<!-- <beans:bean class="mvc.EmpController" id="el" /> -->
+
+	<!-- HandlerMapping객체 생성 /hello.mvc - HelloController 를 알려준다. -->
+	<!-- 맵핑 컨트롤러 / 여기 있는것만 호출 가능 / 직접적인 jsp 불가능 -->
+	<!-- 2. mvc 패키지안에서 사용시 스프링 Hanler Mapping 객체 생성- 전달 -->
+	<beans:bean
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<beans:property name="mappings">
+			<beans:props><!-- hc의 역할 29번째 줄 참고 / new HelloController 생성 -->
+				<!-- <beans:prop key="/hello.mvc"> hc </beans:prop> -->
+				<!-- <beans:prop key="/boardwrite"> bc </beans:prop> <beans:prop key="/member.front"> 
+					mc </beans:prop> -->
+				<!-- <beans:prop key="/emplist"> el </beans:prop> -->
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+
+	<!-- Emp Bean 생성하는 대신에 @Component annotaion 사용시 주석처리 - 컨트롤러 전달 -->
+	<!-- <beans:bean id="empdao" class="kitri.edu.mvc.EmpDAO" /> -->
+	<!-- websocket시 필요한 부분 -->
+	<!-- <websocket:handlers>
+	<websocket:mapping handler="chatwebsockethandler" path="/chatws"/> @Component("" / ws://ip:port/컨텍스트명/웹소켓url
+	</websocket:handlers> -->
+	
+	<!-- 파일업로드시 필요 -->
+	<!-- <beans:bean id="multipartResolver" 
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver" /> -->
+	
+</beans:beans>
